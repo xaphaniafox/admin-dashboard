@@ -1,9 +1,6 @@
+import Login from "./features/identity/components/login";
 function App() {
-  return (
-    <>
-      <p>پلتفرم پشتیبانی</p>
-    </>
-  );
+  return <Login />;
 }
 
 export default App;
