@@ -5,6 +5,7 @@ import {
   useActionData,
   useNavigate,
   useNavigation,
+  useRouteError,
   useSubmit,
 } from "react-router-dom";
 import { httpService } from "../../../core/http-service";
@@ -31,6 +32,7 @@ const Register = () => {
         navigate("/login");
       }, 2000);
   }, [isSuccessOperation]);
+  const routeErrors = useRouteError();
   return (
     <>
       <div className="text-center mt-4">
@@ -133,6 +135,13 @@ const Register = () => {
               {isSuccessOperation && (
                 <div className="alert alert-success text-success p-2 mt-3">
                   عملیات با موفقیت انجام شد. به صفحه ورود منتقل می شوید.
+                </div>
+              )}
+              {routeErrors && (
+                <div className="alert alert-danger text-danger p-2 mt-3">
+                  {routeErrors.response?.data.map((error) => (
+                    <p className="mb-0">{error.description}</p>
+                  ))}
                 </div>
               )}
             </form>
