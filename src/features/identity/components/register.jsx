@@ -1,6 +1,6 @@
 import logo from "@assets/images/logo.svg";
 import { useForm } from "react-hook-form";
-import { Link, useSubmit } from "react-router-dom";
+import { Link, useNavigation, useSubmit } from "react-router-dom";
 import { httpService } from "../../../core/http-service";
 const Register = () => {
   const {
@@ -14,6 +14,8 @@ const Register = () => {
     const { confirmPassword, ...userData } = data;
     submitForm(userData, { method: "post" });
   };
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state !== "idle";
   return (
     <>
       <div className="text-center mt-4">
@@ -105,8 +107,12 @@ const Register = () => {
                   )}
               </div>
               <div className="text-center mt-3">
-                <button type="submit" className="btn btn-lg btn-primary">
-                  ثبت نام کنید
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn btn-lg btn-primary"
+                >
+                  {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"}
                 </button>
               </div>
             </form>
