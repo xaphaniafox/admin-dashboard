@@ -10,7 +10,9 @@ import {
 } from "react-router-dom";
 import { httpService } from "../../../core/http-service";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 const Register = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -129,7 +131,8 @@ const Register = () => {
                   disabled={isSubmitting}
                   className="btn btn-lg btn-primary"
                 >
-                  {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"}
+                  {t("register.register")}
+                  {/* {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"} */}
                 </button>
               </div>
               {isSuccessOperation && (
